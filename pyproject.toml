@@ -36,5 +36,5 @@ packages = ["src/santosuruh"]
 migrate = "python src/manage.py migrate"
 makemigrations = "python src/manage.py makemigrations"
 dev = "python src/manage.py runserver"
-tw = "pnpm exec tailwind -i ./tailwind.css -o ./src/base/static/base.css --watch"
+tw = "pnpm exec tailwind -i ./tailwind.css -o ./src/base/static/css/base.css --watch"
 startapp = "python -c 'import sys, os; os.system(f\"django-admin startapp {sys.argv[1]}\")'"
