@@ -14,4 +14,7 @@ def chat_redirect(request, event_id: int):
 # Create your views here.
 def base_view(request):
     return render(request, 'index.html')
-
+def login_view(request):
+    return render(request, "login.html")
+def test_view(request):
+    return render(request, "test.html")

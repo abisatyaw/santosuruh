@@ -13,15 +13,20 @@ asgiref==3.8.1
     # via django-cors-headers
 django==5.0.6
     # via django-cors-headers
+    # via django-extensions
     # via djangorestframework
     # via djangorestframework-simplejwt
     # via santosuruh
 django-cors-headers==4.3.1
     # via santosuruh
+django-extensions==3.2.3
+    # via santosuruh
 djangorestframework==3.15.1
     # via djangorestframework-simplejwt
     # via santosuruh
 djangorestframework-simplejwt==5.3.1
+    # via santosuruh
+pillow==10.2.0
     # via santosuruh
 psycopg2==2.9.9
     # via santosuruh

@@ -12,4 +12,5 @@ wheels/
 #env
 .env
 
+./src/db.sqlite3
 node_modules/

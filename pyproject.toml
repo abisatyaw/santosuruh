@@ -14,6 +14,8 @@ dependencies = [
     "pyjwt>=2.8.0",
     "pytz>=2024.1",
     "psycopg2>=2.9.9",
+    "pillow>=10.2.0",
+    "django-extensions>=3.2.3",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"

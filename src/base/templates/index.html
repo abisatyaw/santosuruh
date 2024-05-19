@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SANTOSURUH</title>
   <script src="https://unpkg.com/htmx.org@1.6.1"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 </head>
 
   <body>
@@ -17,14 +17,33 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
           </div>
           <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a>Homepage</a></li>
+            <li><a hx-get="{% url 'base' %}" hx-swap="outerHTML" hx-target="body">Homepage</a></li>
             <li><a>Portfolio</a></li>
             <li><a>About</a></li>
+            <li><a>Logout</a></li>
           </ul>
         </div>
       </div>
       <div class="navbar-center">
-        <button hx-get="{% url 'base' %}" hx-swap="outerHTML" hx-target="body" class="btn btn-ghost text-x l">SANTOSURUH</button>
+          <!-- You can open the modal using ID.showModal() method -->
+          <button hx-get="{% url 'login' %}" hx-swap= "innerHTML"  hx-target= "login" class="btn" onclick="my_modal.showModal()">
+            <img class="h-6 w-6 rounded-full object-cover" src="{% static 'images/avatar.svg' %}"/>
+            Anonymous User 👋
+          </button>
+          <dialog id="my_modal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+              <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+              </form>
+              <!-- Modal content -->
+              <div class="p-6">
+                  <login class="justify-center">
+                    {% block login %}
+                    {% endblock %}
+                  </login>
+            </div>
+            </div>
+          </dialog>
       </div>
       <div class="navbar-end">
         <button id="search" aria-label="Name" class="btn btn-ghost btn-circle">
