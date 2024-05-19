@@ -1,0 +1,40 @@
+[project]
+name = "santosuruh"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "abisatyaw", email = "abisatya90@gmail.com" }
+]
+dependencies = [
+    "django>=5.0.6",
+    "python-decouple>=3.8",
+    "django-cors-headers>=4.3.1",
+    "djangorestframework>=3.15.1",
+    "djangorestframework-simplejwt>=5.3.1",
+    "pyjwt>=2.8.0",
+    "pytz>=2024.1",
+    "psycopg2>=2.9.9",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/santosuruh"]
+
+[tool.rye.scripts]
+migrate = "python src/manage.py migrate"
+makemigrations = "python src/manage.py makemigrations"
+dev = "python src/manage.py runserver"
+tw = "pnpm exec tailwind -i ./tailwind.css -o ./src/base/static/base.css --watch"
+startapp = "python -c 'import sys, os; os.system(f\"django-admin startapp {sys.argv[1]}\")'"
