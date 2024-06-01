@@ -1,5 +1,10 @@
-from django.shortcuts import render
+
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from allauth.account.views import LoginView
 from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 # from .models import Event
 
 class HTTPResponseHXRedirect(HttpResponseRedirect):
@@ -13,8 +18,17 @@ def chat_redirect(request, event_id: int):
 
 # Create your views here.
 def base_view(request):
-    return render(request, 'index.html')
-def login_view(request):
-    return render(request, "login.html")
-def test_view(request):
-    return render(request, "test.html")
+    return render(request, 'home.html')
+
+
+class CustomLoginView(LoginView):
+    def form_invalid(self, form):
+        flag = True  # Or set it to False based on your logic
+
+        # Store the flag value in the session
+        self.request.session['flag'] = flag
+
+        # Redirect to the template where the flag is used
+        return redirect('base')
+
+# Create your views here.

@@ -1,9 +1,7 @@
 from django.urls import path
-from . import views
-
+from .views import CustomLoginView
 
 urlpatterns = [
-    # path("chat", views.chat_redirect, name="events")
-    path("login/", views.login_view, name="login"),
-    path("test/", views.test_view, name="test"),
+    # Your other URL patterns
+    path('accounts/login/', CustomLoginView.as_view(), name='account_login'),
 ]

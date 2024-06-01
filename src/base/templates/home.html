@@ -1,0 +1,71 @@
+{% extends "index.html" %}
+{% load static %}
+<body>
+  {% block content %}
+    <div class="navbar bg-base-100">
+      <div class="navbar-start">
+        <div class="dropdown">
+          <div tabindex="0" role="button" id="tab" aria-label="tab" class="btn btn-ghost btn-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+          </div>
+          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+            <li><a>Homepage</a></li>
+            <li><a>About</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="navbar-center">
+        <!-- You can open the modal using ID.showModal() method -->
+        {% if user.is_authenticated %}
+        <button hx-get="{% url 'account_logout' %}" hx-swap= "innerHTML"  hx-target= "login" class="btn" onclick="my_modal.showModal()">
+        {% else %}
+        <button hx-get="{% url 'account_login' %}" hx-swap= "innerHTML"  hx-target= "login" class="btn" onclick="my_modal.showModal()">
+        {% endif %}
+        {% if user.is_authenticated %}
+          <img class="h-6 w-6 rounded-full object-cover" src="{{ user.profile.avatar }}"/>
+          {{ user.username }} 👋
+          {% else %}
+          <img class="h-6 w-6 rounded-full object-cover" src="{% static 'images/avatar.svg' %}"/>
+          Anonymous User 👋
+          {% endif %}
+        </button>
+        <dialog id="my_modal" class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <form method="dialog">
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <!-- Modal content -->
+              <login class="justify-center" id="modal-content">
+                {% block login %}
+                {% endblock %}
+              </login>
+          </div>
+        </dialog>
+    </div>
+      <div class="navbar-end">
+        <button id="search" aria-label="Name" class="btn btn-ghost btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+        </button>
+        <button id="alert" aria-label="Name" class="btn btn-ghost btn-circle">
+          <div class="indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+            <span class="badge badge-xs badge-primary indicator-item"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div class="hero min-h-screen bg-base-200">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Hello there</h1>
+          <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+        </div>
+        <button hx-get="{% url 'chat' %}" hx-swap="outerHTML" hx-target="body" class="btn btn-outline btn-xs sm:btn-sm md:btn-md lg:btn-lg"> 
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+          Chat with me
+        </button>
+      </div>
+    </div>
+    {% endblock %}
+</body>
+
