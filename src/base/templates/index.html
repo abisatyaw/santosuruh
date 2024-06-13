@@ -4,12 +4,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KONTOL</title>
+  <title>SANTOSURUH</title>
   <script src="https://unpkg.com/htmx.org@1.6.1"></script>
-  <link rel="stylesheet" type="text/css" href=" {% static 'css/base.css' %}" />
+  <link rel="stylesheet" type="text/css" href=" {% static 'style/index.css' %}" />
 </head>
-{% block content %}
-{% endblock %}
+<body>
+  {% include 'navbar.html' %}
+  
+  {% block content %}
+  {% endblock %}
+<input type="range" min="0" max="100" value="40" class="range [--range-shdw:yellow]" />
+</body>
 <script>
 </script>
   

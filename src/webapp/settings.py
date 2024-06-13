@@ -62,8 +62,8 @@ INSTALLED_APPS = [
     "api",
     "base",
     "rest_framework",
-    "app_rtchat",
     "app_profile",
+    "app_rtchat",
 ]
 
 MIDDLEWARE = [
@@ -156,6 +156,8 @@ STATIC_APP_DIR = BASE_DIR.parent /'src'/ 'base' / 'static'
 STATIC_APP_DIR = str(STATIC_APP_DIR)
 
 STATIC_URL = "static/"
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Adding the external static directory
 STATICFILES_DIRS = [
