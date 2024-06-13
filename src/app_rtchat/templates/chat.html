@@ -1,34 +1,74 @@
 {% extends "index.html" %}
-
+{% load static %}
 {% block content %}
-<div class="chat chat-start">
-    <div class="chat-image avatar">
-      <div class="w-10 rounded-full">
-        <img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-      </div>
+<body class=>
+    <div class="flex flex-col h-screen">
+        <div class="flex-1 overflow-y-auto">
+            <!-- Chat messages will be displayed here -->
+            {% for message in chat_messages reversed %}
+            {% if message.author == user %}
+            <div class="chat chat-start">
+                <div class="chat-image avatar">
+                <div class="w-10 rounded-full">
+                    <img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                </div>
+                </div>
+                <div class="chat-header">
+                {{message.author}}
+                <time class="text-xs opacity-50">{{message.created_at}}</time>
+                </div>
+                <div class="chat-bubble">
+                <p>{{ message.body }}</p>
+                </div>
+                <div class="chat-footer opacity-50">
+                Delivered
+                </div>
+            </div>
+            {% else %}
+            <div class="chat chat-end">
+                <div class="chat-image avatar">
+                <div class="w-10 rounded-full">
+                    <img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                </div>
+                </div>
+                <div class="chat-header">
+                {{message.author}}
+                <time class="text-xs opacity-50">{{message.created_at}}</time>
+                </div>
+                <div class="chat-bubble">
+                <p>{{ message.body }}</p>
+                </div>
+                <div class="chat-footer opacity-50">
+                Seen at 12:46
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="sticky bottom-0 z-10 p-4 bg-gray-800">
+            <div class="flex items-center max-w-2xl mx-auto bg-white border border-gray-300 rounded-full px-4 py-2 shadow">
+                <form action="{% url 'chat' %}" method="post" class="flex w-full">
+                    {% csrf_token %}
+                    <input type="text"  name="body" class="flex-1 outline-none bg-transparent text-gray-700" placeholder="Type your message..." maxlength="300" autofocus="" required="" id="id_body">
+                    <button type="submit" class="ml-2 text-blue-500 hover:text-blue-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="chat-header">
-      Obi-Wan Kenobi
-      <time class="text-xs opacity-50">12:45</time>
-    </div>
-    <div class="chat-bubble">You were the Chosen One!</div>
-    <div class="chat-footer opacity-50">
-      Delivered
-    </div>
-  </div>
-  <div class="chat chat-end">
-    <div class="chat-image avatar">
-      <div class="w-10 rounded-full">
-        <img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-      </div>
-    </div>
-    <div class="chat-header">
-      Anakin
-      <time class="text-xs opacity-50">12:46</time>
-    </div>
-    <div class="chat-bubble">I hate you!</div>
-    <div class="chat-footer opacity-50">
-      Seen at 12:46
-    </div>
-  </div>
-  {% endblock %}
+
+    <span class="loading loading-spinner text-primary"></span>
+    <span class="loading loading-spinner text-secondary"></span>
+    <span class="loading loading-spinner text-accent"></span>
+    <span class="loading loading-spinner text-neutral"></span>
+    <span class="loading loading-spinner text-info"></span>
+    <span class="loading loading-spinner text-success"></span>
+    <span class="loading loading-spinner text-warning"></span>
+    <span class="loading loading-spinner text-error"></span>
+    
+    <a>yea</a>
+</body>
+{% endblock %}
